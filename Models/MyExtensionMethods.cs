@@ -20,11 +20,11 @@
                 }
             }
         }
-        public static IEnumerable<Product?> FilterByName(
-            this IEnumerable<Product?> productEnum, char firstLetter)
-        {
+        public static IEnumerable<Product?> Filter(
+            this IEnumerable<Product?> productEnum, Func<Product?, bool> selector) {
+
             foreach (Product? prod in productEnum) {
-                if (prod?.Name?[0] == firstLetter) {
+                if (selector(prod)) {
                     yield return prod;
                 }
             }
